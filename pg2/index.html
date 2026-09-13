@@ -155,8 +155,30 @@ body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#102217;color:#f
   .site{border-radius:24px;box-shadow:0 30px 90px rgba(0,0,0,.3)}
 }
 </style>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window,document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '38880091828255962');
+fbq('track', 'PageView');
+</script>
+<!-- End Meta Pixel Code -->
+
 </head>
 <body>
+<noscript>
+  <img height="1" width="1" style="display:none"
+       src="https://www.facebook.com/tr?id=38880091828255962&ev=PageView&noscript=1"
+       alt="">
+</noscript>
+
 <main class="site">
 
 <section class="hero">
@@ -233,5 +255,34 @@ body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#102217;color:#f
 </section>
 
 </main>
+
+<!-- Tracking de cliques para WhatsApp -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var whatsappLinks = document.querySelectorAll('a[href*="chat.whatsapp.com"]');
+
+  whatsappLinks.forEach(function (link, index) {
+    link.addEventListener('click', function () {
+      if (typeof fbq === 'function') {
+        // Evento padrão usado como conversão/lead no Meta.
+        fbq('track', 'Lead', {
+          content_name: 'Clique para grupo do WhatsApp',
+          content_category: 'Landing Page',
+          page_variant: 'PG2_RICHI_LEANDRO',
+          button_position: index + 1
+        });
+
+        // Evento customizado para diagnóstico mais detalhado.
+        fbq('trackCustom', 'WhatsAppClick', {
+          page_variant: 'PG2_RICHI_LEANDRO',
+          destination: 'whatsapp_group',
+          button_position: index + 1
+        });
+      }
+    });
+  });
+});
+</script>
+
 </body>
 </html>
